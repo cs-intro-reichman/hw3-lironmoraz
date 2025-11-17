@@ -107,13 +107,15 @@ public class Algebra {
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return minus(x1, times(div(x1, x2), x2));
 	}	
 
 	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+	public static int sqrt(int x1) {
+		int result = 1;
+		while (times(result, result) <= x1) {
+			result = plus(result, 1);
+		}
+			return minus(result, 1);
 	}	  	  
 }
