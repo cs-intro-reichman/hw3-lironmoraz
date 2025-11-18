@@ -21,47 +21,101 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
+
+		int x1 = Integer.parseInt(args[0]);
+		int x2 = Integer.parseInt(args[1]);
 	}  
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2 > 0) {
+			for (int i = 0; i < x2; i++){
+				x1++;
+			}
+		} else {
+			for (int i = 0; i > x2; i--) {
+				x1--;
+			}
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2 > 0) {
+			for (int i = 0; i < x2; i++){
+				x1--;
+			}
+		} else {
+			for (int i = 0; i > x2; i--) {
+				x1++;
+			}
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int product = 0;
+		if (x2 > 0) {
+			for (int i = 0; i < x2; i++) {
+				product = plus(product, x1);
+			}
+		} else {
+			for (int i = 0; i > x2; i--) {
+				product = minus(product, x1);
+			}
+		}
+		return product;
 	}
 
 	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+	public static int pow(int x1, int x2) {
+		int Exponentiation = 1;
+		if (x2 > 0) {
+			for (int i = 0; i < x2; i++) {
+				Exponentiation = times(Exponentiation, x1);
+			}
+		} else {
+			for (int i = 0; i > x2; i--) {
+				Exponentiation = div(Exponentiation, x1);
+			}
+		}
+		return Exponentiation;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		
+		boolean isQuotientNegative = (x1 < 0 && x2 > 0 || x1 > 0 && x2 < 0);
+		if (x1 < 0) {x1 = minus(0, x1);}
+		if (x2 < 0) {x2 = minus(0, x2);}
+
+		int quotient = 0;
+
+		while (x1 >= x2) {
+			x1 = minus(x1, x2);
+			quotient = plus(quotient, 1);
+		}
+
+		if (isQuotientNegative) {
+			return minus(0, quotient);
+		} else {
+			return quotient;
+		}
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return minus(x1, times(div(x1, x2), x2));
 	}	
 
 	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+	public static int sqrt(int x1) {
+		int result = 1;
+		while (times(result, result) <= x1) {
+			result = plus(result, 1);
+		}
+			return minus(result, 1);
 	}	  	  
 }
